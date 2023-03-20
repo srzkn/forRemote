@@ -2,8 +2,7 @@ package com.xFleet.pages;
 
 public class BasePage {
 
-
-//yorum
-
+    //just added some notes here.
     //Basepage
+    //added new line here
 }
