@@ -1,6 +1,6 @@
-package com.xFleet.step_definitions;
+package com.xfleet.step_definitions;
 
-import com.xFleet.utilities.Driver;
+import com.xfleet.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
 import org.openqa.selenium.OutputType;

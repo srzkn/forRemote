@@ -1,4 +1,4 @@
-package com.xFleet.runners;
+package com.xfleet.runners;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
 
         },
         features = "src/test/resources/features",
-        glue = "com/xFleet/step_definitions",
+        glue = "com/xfleet/step_definitions",
         dryRun = false,
         tags = "",
         publish = true

@@ -1,7 +1,6 @@
-package com.xFleet.utilities;
+package com.xfleet.utilities;
 
 import io.github.bonigarcia.wdm.*;
-import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
 import org.openqa.selenium.firefox.*;
 

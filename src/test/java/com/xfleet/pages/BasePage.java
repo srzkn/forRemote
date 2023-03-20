@@ -1,4 +1,4 @@
-package com.xFleet.pages;
+package com.xfleet.pages;
 
 public class BasePage {
 
