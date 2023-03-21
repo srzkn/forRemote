@@ -32,7 +32,7 @@ public class BrowserUtils {
     }
 
     /*
-    This method accepts 3 arguments.
+    This method accepts  3 arguments.
     Arg1: webdriver
     Arg2: expectedInUrl : for verify if the url contains given String.
         - If condition matches, will break loop.
