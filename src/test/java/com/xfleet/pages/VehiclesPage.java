@@ -13,8 +13,21 @@ public class VehiclesPage {
 
     }
 
-    @FindBy(xpath = "//table/tbody/tr/td[20]/div/div")
+
+    @FindBy(xpath = "//tbody/tr[5]/td[21]/div/div/a")
     public WebElement threeDotMenu;
+
+
+
+    @FindBy(css= "li[class='launcher-item']:nth-child(3)")
+
+    public WebElement deleteButtonOfThreeDotMenu;
+
+    @FindBy(css = ".modal-header>h3")
+    public WebElement deleteConfirmation;
+
+
+
 
 
 

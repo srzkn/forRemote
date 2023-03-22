@@ -16,6 +16,12 @@ public class BasePage {
     @FindBy(xpath = "//span[.='Vehicles']")
     public WebElement vehiclesFromFleet;
 
+    @FindBy(css = ".grid-body")
+    public WebElement table;
+
+    @FindBy(css = "div[class='loader-mask shown']")
+    public WebElement loaderMask;
+
     //just added some notes here.
     //Basepage
     //added new line here
