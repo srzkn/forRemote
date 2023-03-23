@@ -26,6 +26,9 @@ public class VehiclesPage {
     @FindBy(css = ".modal-header>h3")
     public WebElement deleteConfirmation;
 
+    @FindBy(xpath = "//td[.='Berry Senger']")
+    public WebElement thirdRow;
+
 
 
 
