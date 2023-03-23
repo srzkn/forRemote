@@ -27,6 +27,7 @@ public class VehiclesPage {
     @FindBy(css = ".modal-header>h3")
     public WebElement deleteConfirmation;
 
+
     @FindBy(css = ".btn.ok.btn-danger")
     public WebElement deleteButtonOfDeleteConfirmation;
 
@@ -41,6 +42,9 @@ public class VehiclesPage {
 
     @FindBy(xpath = "//div[@class='message']")
     public WebElement itemDeletedMessage;
+    
+    @FindBy(xpath = "//td[.='Berry Senger']")
+    public WebElement thirdRow;
 
 
 
