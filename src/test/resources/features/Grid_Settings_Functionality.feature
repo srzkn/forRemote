@@ -1,10 +1,11 @@
+@MuratA
 Feature: As a user, I should be able to arrange vehicle table columns via "grid settings"
   functionality under the Fleet-Vehicles page
 
   Background: User, open the login page
     Given user, open the login page and user can be login
 
-
+ @Step1
   Scenario: "Grid Settings" should be visible when user clicks on the gear icon
     Given user click the gear button
     And user, can see grid setting
