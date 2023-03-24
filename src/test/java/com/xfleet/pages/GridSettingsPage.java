@@ -12,6 +12,12 @@ public class GridSettingsPage {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
+    @FindBy(xpath = "//td[@class='title-cell']//label//span")
+    public WebElement searchResultTable;
+
+    @FindBy(xpath = "//input[@data-role='column-manager-search']")
+    public WebElement searchInput;
+
     @FindBy(xpath = "//tbody[@class='ui-sortable']//label")
     public List<WebElement> gridTable;
 

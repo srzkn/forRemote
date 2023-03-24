@@ -6,6 +6,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -60,6 +61,9 @@ public class Grid_Settings_StepDef {
 
     @And("user can search {string}")
     public void userCanSearch(String str) {
+        gridSettingsPage.searchInput.clear();
+        gridSettingsPage.searchInput.sendKeys(str+ Keys.ENTER);
+        Assert.assertTrue(gridSettingsPage.searchResultTable.isDisplayed());
 
     }
 

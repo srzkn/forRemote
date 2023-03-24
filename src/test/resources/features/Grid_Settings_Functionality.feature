@@ -40,9 +40,10 @@ Feature: As a user, I should be able to arrange vehicle table columns via "grid 
       | Horsepower Taxation       |
       | Power (KW)                |
 
+  @Step3
   Scenario Outline: User can find any column by typing the name on "Quick Search" input box
     Given move mouse icon to fleet menu and click vehicle button
-    And user click to gear icon
+    And user click the gear button
     And user can search "<menuItem>"
 
     Examples:
