@@ -7,12 +7,14 @@ Feature: As a user, I should be able to arrange vehicle table columns via "grid 
 
  @Step1
   Scenario: "Grid Settings" should be visible when user clicks on the gear icon
-    Given user click the gear button
-    And user, can see grid setting
+   Given move mouse icon to fleet menu and click vehicle button
+   And user click the gear button
+   And user, can see grid setting
 
+   @Step2
   Scenario Outline: Column names in grid settings should be shown as below
     Given move mouse icon to fleet menu and click vehicle button
-    And user click to gear icon
+    And user click the gear button
     And user can see "<menuItem>"
 
     Examples:

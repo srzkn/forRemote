@@ -6,6 +6,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,38 +24,38 @@ public class Grid_Settings_StepDef {
     }
     @Given("user click the gear button")
     public void user_click_the_gear_button() throws InterruptedException {
-        Actions actions=new Actions(Driver.getDriver());
-        //WebDriverWait wait =new WebDriverWait(Driver.getDriver(),10);
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@class='nav-multilevel main-menu']/li[2]")));
-
-        Thread.sleep(5000);
-        actions.moveToElement(gridSettingsPage.menuFleet)
-               .click()
-               .moveToElement(gridSettingsPage.menuVahicles)
-               .click()
-                .perform();
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@title='Grid Settings']")));
-        Thread.sleep(5000);
+        gridSettingsPage.nemuGearButton.click();
     }
     @Given("user, can see grid setting")
     public void user_can_see_grid_setting() {
-        gridSettingsPage.nemuGearButton.click();
         Assert.assertTrue(gridSettingsPage.gridPopup.isDisplayed());
     }
 
     @Given("move mouse icon to fleet menu and click vehicle button")
-    public void moveMouseIconToFleetMenuAndClickVehicleButton() {
+    public void moveMouseIconToFleetMenuAndClickVehicleButton() throws InterruptedException {
+        Actions actions=new Actions(Driver.getDriver());
+        //WebDriverWait wait =new WebDriverWait(Driver.getDriver(),10);
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@class='nav-multilevel main-menu']/li[2]")));
 
-    }
-
-    @And("user click to gear icon")
-    public void userClickToGearIcon() {
-
+        Thread.sleep(10000);
+        actions.moveToElement(gridSettingsPage.menuFleet)
+                .click()
+                .moveToElement(gridSettingsPage.menuVahicles)
+                .click()
+                .perform();
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@title='Grid Settings']")));
+        Thread.sleep(5000);
     }
 
     @And("user can see {string}")
     public void userCanSee(String str) {
-
+        String text = "";
+        for (WebElement each: gridSettingsPage.gridTable) {
+            if(each.getText().equals(str)){
+                text=str;
+            }
+        }
+        Assert.assertEquals(str,text);
     }
 
     @And("user can search {string}")
@@ -81,4 +82,5 @@ public class Grid_Settings_StepDef {
     public void userCanSeeChanges() {
 
     }
+
 }
