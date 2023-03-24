@@ -52,29 +52,17 @@ Feature: As a user, I should be able to arrange vehicle table columns via "grid 
       | License Plate             |
       | Tags                      |
       | Location                  |
-      | Driver                    |
-      | Chassis Number            |
-      | Model Year                |
       | Last Odometer             |
       | Immatriculation Date      |
       | First Contract Date       |
       | Catalog Value (VAT Incl.) |
-      | Seats Number              |
-      | Doors Number              |
-      | Color                     |
-      | Transmission              |
-      | Fuel Type                 |
-      | CO2 Emissions             |
-      | Horsepower                |
-      | Horsepower Taxation       |
-      | Power (KW)                |
 
 
+    @Step4
   Scenario Outline:User can select any column by clicking the column name
     Given move mouse icon to fleet menu and click vehicle button
-    And user click to gear icon
-    And user can click at "<menuItem>"
-    And user select the menuItem searchBox
+    And user click the gear button
+    And user can click at "<menuItem>" and checked vehicle table
 
     Examples:
       | menuItem                  |
@@ -101,7 +89,7 @@ Feature: As a user, I should be able to arrange vehicle table columns via "grid 
 
   Scenario Outline: User can arrange the order of the columns (by dragging and dropping)
     Given move mouse icon to fleet menu and click vehicle button
-    And user click to gear icon
+    And user click the gear button
     And user drag and drop "<menuItem>"
 
     Examples: user drag drop
@@ -114,7 +102,7 @@ Feature: As a user, I should be able to arrange vehicle table columns via "grid 
 
   Scenario Outline: User can see all corresponding changes under 'Fleet-Vehicles' pages
     Given move mouse icon to fleet menu and click vehicle button
-    And user click to gear icon
+    And user click the gear button
     And user drag and drop "<menuItem>"
     And user can see changes
 

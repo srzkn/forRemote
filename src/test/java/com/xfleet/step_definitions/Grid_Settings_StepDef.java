@@ -2,6 +2,7 @@ package com.xfleet.step_definitions;
 
 import com.xfleet.pages.GridSettingsPage;
 import com.xfleet.utilities.Driver;
+import io.cucumber.java.bs.A;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import org.junit.Assert;
@@ -69,13 +70,15 @@ public class Grid_Settings_StepDef {
 
     @And("user can click at {string}")
     public void userCanClickAt(String str) {
+        for (WebElement each: gridSettingsPage.gridTable) {
+            if(each.getText().equals(str)){
+                each.click();
+            }
+        }
 
     }
 
-    @And("user select the menuItem searchBox")
-    public void userSelectTheMenuItemSearchBox() {
 
-    }
 
     @And("user drag and drop {string}")
     public void userDragAndDrop(String arg0) {
@@ -87,4 +90,29 @@ public class Grid_Settings_StepDef {
 
     }
 
+    @And("user can click at {string} and checked vehicle table")
+    public void userCanClickAtAndCheckedVehicleTable(String str) {
+        int count=0;
+        boolean check=false;
+        for (WebElement each: gridSettingsPage.gridTable) {
+            if (each.getText().equals(str)){
+                each.click();
+                if (gridSettingsPage.tableCheckBox.get(count).isSelected()){
+                    for (WebElement each1: gridSettingsPage.vehicleTable) {
+                        if (each1.getText().equalsIgnoreCase(str)){
+                            Assert.assertTrue(each1.getText().equalsIgnoreCase(str));
+                        }
+                    }
+                }else {
+                    for (WebElement each1: gridSettingsPage.vehicleTable) {
+                        if (each1.getText().equalsIgnoreCase(str)){
+                            check=true;
+                        }
+                    }
+                    Assert.assertFalse(check);
+                }
+            }
+            count++;
+        }
+    }
 }
