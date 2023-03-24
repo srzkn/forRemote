@@ -16,7 +16,12 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class Delete_A_Car_Steps {
 
@@ -26,8 +31,10 @@ public class Delete_A_Car_Steps {
     VehiclesGeneralInfoPage generalInfoPage = new VehiclesGeneralInfoPage();
     Actions actions = new Actions(Driver.getDriver());
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
+    String licencePlateOnTable; int pageNum;
 
-    String licencePlateOnTable;
+
+
 
 
     @Given("user should be on the login page")
@@ -45,10 +52,13 @@ public class Delete_A_Car_Steps {
     @When("choose Vehicles from Fleet menu")
     public void choose_vehicles_from_fleet_menu() {
 
+
         Actions actions = new Actions(Driver.getDriver());
 
-        actions.moveToElement(basePage.fleetMenu).pause(2).
-                moveToElement(basePage.vehiclesFromFleet).perform();
+
+
+        actions.moveToElement(basePage.fleetMenu).pause(200).
+               moveToElement(basePage.vehiclesFromFleet).perform();
 
 
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
@@ -60,8 +70,9 @@ public class Delete_A_Car_Steps {
     @When("hover over three dot menu on any row")
     public void hover_over_three_dot_menu_on_any_row() {
 
+
         BrowserUtils.waitForPageToLoad(10);
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(5);
 
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         //I used table's css locator with js executor to scroll right to the end.
@@ -110,12 +121,14 @@ public class Delete_A_Car_Steps {
 
 
     }
+
     @When("User login with his her username {string} and  password {string}")
     public void user_login_with_his_her_username_and_password(String username, String password) {
 
         loginPage.loginInput.sendKeys(username);
         loginPage.passwordInput.sendKeys(password);
         loginPage.loginButton.click();
+        //wait.until(ExpectedConditions.invisibilityOf(basePage.progressBar));
         BrowserUtils.waitFor(5);
     }
 
@@ -123,7 +136,7 @@ public class Delete_A_Car_Steps {
     public void hover_over_three_dot_menu_on_any_row_while_logged_in_as_driver() {
 
         BrowserUtils.waitForPageToLoad(10);
-        BrowserUtils.waitFor(3);
+        BrowserUtils.waitFor(5);
 
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         //I used table's css locator with js executor to scroll right to the end.
@@ -217,4 +230,5 @@ public class Delete_A_Car_Steps {
         }
 
     }
+
 }
