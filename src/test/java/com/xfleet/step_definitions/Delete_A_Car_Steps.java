@@ -39,7 +39,7 @@ public class Delete_A_Car_Steps {
         loginPage.loginInput.sendKeys(userName);
         loginPage.passwordInput.sendKeys(Password);
         loginPage.loginButton.click();
-        BrowserUtils.waitFor(5);
+        BrowserUtils.waitFor(3);
 
     }
     @When("choose Vehicles from Fleet menu")
@@ -50,10 +50,10 @@ public class Delete_A_Car_Steps {
         actions.moveToElement(basePage.fleetMenu).pause(2).
                 moveToElement(basePage.vehiclesFromFleet).perform();
 
+//not :(recep) yukarıya "click()" ekleyip burayı devre dışı bıraktım..
+       JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 
-        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-
-        js.executeScript("arguments[0].click();",basePage.vehiclesFromFleet);
+       js.executeScript("arguments[0].click();",basePage.vehiclesFromFleet);
 
 
     }
