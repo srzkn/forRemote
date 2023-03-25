@@ -87,17 +87,18 @@ Feature: As a user, I should be able to arrange vehicle table columns via "grid 
       | Horsepower Taxation       |
       | Power (KW)                |
 
+  @Step5
   Scenario Outline: User can arrange the order of the columns (by dragging and dropping)
     Given move mouse icon to fleet menu and click vehicle button
     And user click the gear button
     And user drag and drop "<menuItem>"
 
     Examples: user drag drop
-      | menuItem       |
-      | Color          |
-      | Chassis Number |
-      | Tags           |
-      | Model Year     |
+      | menuItem      |
+      | Color         |
+      | Last Odometer |
+      | Tags          |
+      | Model Year    |
 
 
   Scenario Outline: User can see all corresponding changes under 'Fleet-Vehicles' pages

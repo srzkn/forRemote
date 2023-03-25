@@ -22,6 +22,9 @@ public class GridSettingsPage {
     @FindBy(xpath = "//input[@data-role='column-manager-search']")
     public WebElement searchInput;
 
+
+    @FindBy(xpath = "//tbody[@class='ui-sortable']//span")
+    public List<WebElement> moveItemPoints;
     @FindBy(xpath = "//tbody[@class='ui-sortable']//label")
     public List<WebElement> gridTable;
 
