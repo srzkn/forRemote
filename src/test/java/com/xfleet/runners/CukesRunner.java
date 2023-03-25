@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "com/xfleet/step_definitions",
         dryRun = false,
-        tags = "@XFLEET10-705",
+        tags = "",
         publish = true
 )
 public class CukesRunner {
