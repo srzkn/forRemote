@@ -13,6 +13,9 @@ public class VehiclesPage {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
+    @FindBy(xpath = "//div[@class='loader-mask shown']/div")
+    public WebElement loaderMask;
+
     @FindBy(css = "tbody>tr:nth-child(5)")
     public WebElement anyRow;
     @FindBy(xpath = "//tbody/tr[5]/td[2]")
@@ -45,6 +48,12 @@ public class VehiclesPage {
     
     @FindBy(xpath = "//td[.='Berry Senger']")
     public WebElement thirdRow;
+
+    @FindBy(xpath = "(//label[@class='dib'])[2]")
+    public WebElement numberOfPages;
+
+    @FindBy(xpath = "//i[@class=\"fa-chevron-right hide-text\"]")
+    public WebElement nextPage;
 
 
 
