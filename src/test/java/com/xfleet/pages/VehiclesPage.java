@@ -49,11 +49,20 @@ public class VehiclesPage {
     @FindBy(xpath = "//td[.='Berry Senger']")
     public WebElement thirdRow;
 
+    @FindBy(xpath ="//td[3]")
+    public WebElement firstData;
+
     @FindBy(xpath = "(//label[@class='dib'])[2]")
     public WebElement numberOfPages;
 
     @FindBy(xpath = "//i[@class=\"fa-chevron-right hide-text\"]")
     public WebElement nextPage;
+
+    @FindBy(xpath = "//div[@class='details']")
+    public WebElement eventDetails;
+
+    @FindBy (xpath = "//td[.='Miss Clemmie Kulas']")
+    public WebElement carWithEvent;
 
 
 

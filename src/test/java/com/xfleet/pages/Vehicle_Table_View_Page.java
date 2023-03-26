@@ -32,6 +32,9 @@ public class Vehicle_Table_View_Page {
     @FindBy(xpath = "//a[@title='CSV']")
     public WebElement CSVGridButton;
 
+    @FindBy(xpath ="(//td[2])[1]")
+    public WebElement firstData;
+
 
 
 
