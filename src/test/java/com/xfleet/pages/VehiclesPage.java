@@ -52,6 +52,9 @@ public class VehiclesPage {
     @FindBy(xpath = "(//label[@class='dib'])[2]")
     public WebElement numberOfPages;
 
+    @FindBy(xpath = "(//label[@class='dib'])[3]")
+    public WebElement numberOfRecords;
+
     @FindBy(xpath = "//i[@class=\"fa-chevron-right hide-text\"]")
     public WebElement nextPage;
 

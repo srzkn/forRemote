@@ -26,7 +26,7 @@ public class Vehicle_Table_View_Page {
     @FindBy(xpath = "//label[.='Total of 108 records']")
     public WebElement totalRecords;
 
-    @FindBy(xpath = "//div[@class='btn-group']")
+    @FindBy(xpath = "(//a[contains(@class,'btn')]/i)[1]")
     public WebElement exportGridButton;
 
     @FindBy(xpath = "//a[@title='CSV']")

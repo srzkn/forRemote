@@ -61,9 +61,11 @@ public class Vehicle_Table_View_StepDefinitions {
 
     @And("user click Export Grid")
     public void userClickExportGrid() {
+        BrowserUtils.waitForPageToLoad(10);
+        BrowserUtils.waitFor(5);
         Actions actions=new Actions(Driver.getDriver());
         actions.moveToElement(vehicle_table_view_page.exportGridButton).click(vehicle_table_view_page.exportGridButton).perform();
-        BrowserUtils.sleep(3);
+        BrowserUtils.sleep(5);
     }
     @And("user select CSV option")
     public void userSelectCSVOption() {

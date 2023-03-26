@@ -60,7 +60,6 @@ public class Delete_A_Car_Steps {
         actions.moveToElement(basePage.fleetMenu).pause(200).
                moveToElement(basePage.vehiclesFromFleet).perform();
 
-//not :(recep) yukarıya "click()" ekleyip burayı devre dışı bıraktım..
        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 
        js.executeScript("arguments[0].click();",basePage.vehiclesFromFleet);
@@ -76,7 +75,8 @@ public class Delete_A_Car_Steps {
 
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         //I used table's css locator with js executor to scroll right to the end.
-        js.executeScript("document.querySelector(\"div[class='grid-scrollable-container scrollbar-is-visible']\").scrollLeft=3000");
+        js.executeScript("document.querySelector(\".grid-scrollable-container\").scrollLeft=3000");
+        //js.executeScript("document.querySelector(\"div[class='grid-scrollable-container scrollbar-is-visible']\").scrollLeft=3000");
 
 
 

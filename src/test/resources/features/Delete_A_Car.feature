@@ -95,6 +95,10 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to delete a 
       | storemanager51  | UserUser123 |
       | salesmanager101 | UserUser123 |
 
+    Scenario: My test scenario
+
+
+
 
 
 
