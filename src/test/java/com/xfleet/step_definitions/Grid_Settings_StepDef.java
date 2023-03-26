@@ -142,7 +142,7 @@ public class Grid_Settings_StepDef {
     @And("user can see changes")
     public void userCanSeeChanges() {
 
-
+        System.out.println("hi");
     }
 }
 
