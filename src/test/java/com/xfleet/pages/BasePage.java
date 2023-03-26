@@ -20,6 +20,9 @@ public class BasePage {
     @FindBy(xpath = "(//span[normalize-space()=('Fleet')])[1]")
     public WebElement fleetMenu;
 
+    @FindBy(xpath = "(//span[@class='title title-level-1'])[2]")
+    public WebElement fleet;
+
     @FindBy(xpath = "//span[.='Vehicles']")
     public WebElement vehiclesFromFleet;
 
