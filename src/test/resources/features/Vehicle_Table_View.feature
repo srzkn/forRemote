@@ -37,14 +37,16 @@ Feature: US003 - Vehicle Table View
 
 
     Examples:
-      | userName | passWord    |
-      | user1    | UserUser123 |
+      | userName        | passWord    |
+      | user1           | UserUser123 |
+      | storemanager51  | UserUser123 |
+      | salesmanager101 | UserUser123 |
 
-
-  Scenario Outline: User can see total recordings of vehicles
+  Scenario Outline:User can see total recordings of vehicles
     When user logins with his her "<userName>" and "<passWord>"
     And  choose Vehicles from Fleet menu
     Then user should see total recordings
+
     Examples:
       | userName | passWord    |
       | user1    | UserUser123 |
@@ -55,6 +57,9 @@ Feature: US003 - Vehicle Table View
     And  choose Vehicles from Fleet menu
     And user click Export Grid
     And user select CSV option
+    Then user sees the confirmation message
+
     Examples:
-      | userName | passWord    |
-      | user1    | UserUser123 |
+      | userName        | passWord    |
+      | user1           | UserUser123 |
+      | salesmanager101 | UserUser123 |
