@@ -88,12 +88,12 @@ public class VehiclesPage {
      * If not it will give an exception. You can change time and intervals.
      * PS:You must assign loader to a List<WebElement>
      */
-    public void waitFOrLoadingBarToDisappear(){
+    public void waitForLoadingBarToDisappear(){
 
 
         int count = 0;
         while(loaderMask.size()!=0 && count <10) {
-            try{ Thread.sleep(1000);
+            try{ Thread.sleep(500);
             count++;
         }catch(Exception e){
 

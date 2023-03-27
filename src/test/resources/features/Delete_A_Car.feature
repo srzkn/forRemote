@@ -1,5 +1,6 @@
 @XFLEET10-808
 Feature: As a 'Sales Manager' and 'Store Manager', I should be able to delete a car
+
   Background:
     Given user should be on the login page
 
@@ -15,6 +16,7 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to delete a 
 
     Examples:
       | userName        | passWord    |
+      | user1           | UserUser123 |
       | storemanager51  | UserUser123 |
       | salesmanager101 | UserUser123 |
 
@@ -96,11 +98,11 @@ Feature: As a 'Sales Manager' and 'Store Manager', I should be able to delete a 
       | storemanager51  | UserUser123 |
       | salesmanager101 | UserUser123 |
 
-    Scenario:
-      When User login with his her username "user1" and  password "UserUser123"
-      And choose Vehicles from Fleet menu
-      And he sees the number of record on top of the table
-      Then the number must match with the row number
+  Scenario: the number of records and row number should match when user is on vehicles page
+    When User login with his her username "user1" and  password "UserUser123"
+    And choose Vehicles from Fleet menu
+    And he sees the number of record on top of the table
+    Then the number must match with the row number
 
 
 

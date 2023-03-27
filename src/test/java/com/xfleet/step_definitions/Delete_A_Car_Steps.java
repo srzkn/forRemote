@@ -46,10 +46,7 @@ public class Delete_A_Car_Steps {
     public void user_login_with_his_her_and(String userName, String password) {
 
         loginPage.loginToXFleet(userName,password);
-
-        BrowserUtils.waitFor(5);
-        //js.executeScript("return document.readyState").equals("complete");
-
+        loginPage.waitForProgressBarToDisappear();
 
     }
     @When("choose Vehicles from Fleet menu")
@@ -58,34 +55,18 @@ public class Delete_A_Car_Steps {
 
         Actions actions = new Actions(Driver.getDriver());
 
-
-
-        actions.moveToElement(basePage.fleetMenu).pause(200).
-               moveToElement(basePage.vehiclesFromFleet).perform();
-
-       js.executeScript("arguments[0].click();",basePage.vehiclesFromFleet);
-
-
-
+        actions.moveToElement(basePage.fleetMenu).pause(2)
+                .moveToElement(basePage.vehiclesFromFleet).click().perform();
 
     }
     @When("hover over three dot menu on any row")
     public void hover_over_three_dot_menu_on_any_row() {
-        vehiclesPage.waitFOrLoadingBarToDisappear();
+        vehiclesPage.waitForLoadingBarToDisappear();
 
-
-        //BrowserUtils.waitForPageToLoad(10);
-        //BrowserUtils.waitFor(5);
-
-        //JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         //I used table's css locator with js executor to scroll right to the end.
         js.executeScript("document.querySelector(\".grid-scrollable-container\").scrollLeft=3000");
-        //js.executeScript("document.querySelector(\"div[class='grid-scrollable-container scrollbar-is-visible']\").scrollLeft=3000");
-
-
 
         actions.moveToElement(vehiclesPage.threeDotMenu).perform();
-
         actions.moveToElement(vehiclesPage.deleteButtonOfThreeDotMenu).perform();
 
     }
@@ -94,7 +75,6 @@ public class Delete_A_Car_Steps {
     public void s_he_must_see_the_delete_button() {
 
         actions.moveToElement(vehiclesPage.deleteButtonOfThreeDotMenu).perform();
-
         Assert.assertTrue(vehiclesPage.deleteButtonOfThreeDotMenu.isDisplayed());
         Assert.assertTrue(vehiclesPage.deleteButtonOfThreeDotMenu.isEnabled());
     }
@@ -114,7 +94,6 @@ public class Delete_A_Car_Steps {
     public void clicks_yes_delete_from_delete_confirmation() {
         vehiclesPage.deleteButtonOfDeleteConfirmation.click();
 
-
     }
 
 
@@ -123,29 +102,22 @@ public class Delete_A_Car_Steps {
         wait.until(ExpectedConditions.visibilityOf(vehiclesPage.youDontHavePermissionMessage));
        Assert.assertEquals(message,vehiclesPage.youDontHavePermissionMessage.getText());
 
-
     }
 
     @When("User login with his her username {string} and  password {string}")
     public void user_login_with_his_her_username_and_password(String username, String password) {
 
         loginPage.loginToXFleet(username,password);
-        //wait.until(ExpectedConditions.invisibilityOf(basePage.progressBar));
-        BrowserUtils.waitFor(5);
+        loginPage.waitForProgressBarToDisappear();
     }
 
     @When("hover over three dot menu on any row while logged in as driver")
     public void hover_over_three_dot_menu_on_any_row_while_logged_in_as_driver() {
 
-        vehiclesPage.waitFOrLoadingBarToDisappear();
+        vehiclesPage.waitForLoadingBarToDisappear();
 
-        //BrowserUtils.waitForPageToLoad(10);
-        //BrowserUtils.waitFor(5);
-
-        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         //I used table's css locator with js executor to scroll right to the end.
         js.executeScript("document.querySelector(\".grid-scrollable-container\").scrollLeft=3000");
-
 
 
         actions.moveToElement(vehiclesPage.threeDotMenu).perform();
@@ -155,26 +127,18 @@ public class Delete_A_Car_Steps {
 
     @When("clicks on any row")
     public void clicks_on_any_row() {
-        //BrowserUtils.waitFor(3);
-        vehiclesPage.waitFOrLoadingBarToDisappear();
+
+        vehiclesPage.waitForLoadingBarToDisappear();
 
         licencePlateOnTable = vehiclesPage.anyRowLicencePlate.getText();
         System.out.println(licencePlateOnTable);
 
-        //wait.until(ExpectedConditions.elementToBeClickable(vehiclesPage.anyRow));
-
         vehiclesPage.anyRow.click();
-        //BrowserUtils.waitFor(3);
-        vehiclesPage.waitFOrLoadingBarToDisappear();
+
+        vehiclesPage.waitForLoadingBarToDisappear();
 
         String licencePlateOnGeneralInfo = generalInfoPage.generalInfoLicencePlate.getText();
         System.out.println(licencePlateOnGeneralInfo);
-
-
-        //JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-        //js.executeScript("arguments[0].click();",vehiclesPage.anyRow);
-
-
     }
     @Then("she or he must land on {string} page")
     public void s_he_must_land_on_page(String generalInfo) {
@@ -186,13 +150,8 @@ public class Delete_A_Car_Steps {
     public void s_he_clicks_on_delete() {
 
         generalInfoPage.deleteButtonOfGeneralInfo.click();
-        vehiclesPage.waitFOrLoadingBarToDisappear();
-        //BrowserUtils.waitFor(3);
+        vehiclesPage.waitForLoadingBarToDisappear();
         generalInfoPage.deleteConfirmYesButton.click();
-
-        //BrowserUtils.waitFor(3);
-
-
 
     }
     @Then("the row must be deleted and {string} message must be displayed")
@@ -250,27 +209,8 @@ public class Delete_A_Car_Steps {
     @Then("the number must match with the row number")
     public void theNumberMustMatchWithTheRowNumber() {
 
-//        List<WebElement> wholeList = new ArrayList<>();
-//
-//
-//        int i = 1;
-//        while(i<=numberOfPages){
-//            List<WebElement> vehicleRows = new ArrayList<>();
-//            vehicleRows = vehiclesPage.rows;
-//            wholeList.addAll(vehicleRows);
-//            BrowserUtils.waitFor(2);
-//            vehiclesPage.nextPage.click();
-//            BrowserUtils.waitFor(2);
-//            i++;
-//        }
-//
-//
-//        System.out.println(wholeList.size());
-//        Assert.assertEquals(numberOfRecords,wholeList.size());
-
         int actualRowNumber = (vehiclesPage.getWholeRowNumber());
         Assert.assertEquals(numberOfRecords,actualRowNumber);
-
 
     }
 }
