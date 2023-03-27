@@ -28,4 +28,13 @@ public class LoginPage {
     @FindBy(css = "a[href='/user/reset-request']")
     public WebElement forgotPassword;
 
+    public void loginToXFleet(String username, String password){
+        loginInput.sendKeys(username);
+        passwordInput.sendKeys(password);
+        loginButton.click();
+
+
+    }
+
+
 }

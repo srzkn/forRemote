@@ -7,21 +7,21 @@ import com.xfleet.pages.VehiclesPage;
 import com.xfleet.utilities.BrowserUtils;
 import com.xfleet.utilities.ConfigurationReader;
 import com.xfleet.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
+
 
 public class Delete_A_Car_Steps {
 
@@ -31,7 +31,8 @@ public class Delete_A_Car_Steps {
     VehiclesGeneralInfoPage generalInfoPage = new VehiclesGeneralInfoPage();
     Actions actions = new Actions(Driver.getDriver());
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
-    String licencePlateOnTable; int pageNum;
+    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+    String licencePlateOnTable; int numberOfPages; int numberOfRecords;
 
 
 
@@ -42,11 +43,13 @@ public class Delete_A_Car_Steps {
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
     }
     @When("user logins with his her {string} and {string}")
-    public void user_login_with_his_her_and(String userName, String Password) {
-        loginPage.loginInput.sendKeys(userName);
-        loginPage.passwordInput.sendKeys(Password);
-        loginPage.loginButton.click();
-        BrowserUtils.waitFor(3);
+    public void user_login_with_his_her_and(String userName, String password) {
+
+        loginPage.loginToXFleet(userName,password);
+
+        BrowserUtils.waitFor(5);
+        //js.executeScript("return document.readyState").equals("complete");
+
 
     }
     @When("choose Vehicles from Fleet menu")
@@ -60,20 +63,21 @@ public class Delete_A_Car_Steps {
         actions.moveToElement(basePage.fleetMenu).pause(200).
                moveToElement(basePage.vehiclesFromFleet).perform();
 
-       JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-
        js.executeScript("arguments[0].click();",basePage.vehiclesFromFleet);
+
+
 
 
     }
     @When("hover over three dot menu on any row")
     public void hover_over_three_dot_menu_on_any_row() {
+        vehiclesPage.waitFOrLoadingBarToDisappear();
 
 
-        BrowserUtils.waitForPageToLoad(10);
-        BrowserUtils.waitFor(5);
+        //BrowserUtils.waitForPageToLoad(10);
+        //BrowserUtils.waitFor(5);
 
-        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        //JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         //I used table's css locator with js executor to scroll right to the end.
         js.executeScript("document.querySelector(\".grid-scrollable-container\").scrollLeft=3000");
         //js.executeScript("document.querySelector(\"div[class='grid-scrollable-container scrollbar-is-visible']\").scrollLeft=3000");
@@ -125,9 +129,7 @@ public class Delete_A_Car_Steps {
     @When("User login with his her username {string} and  password {string}")
     public void user_login_with_his_her_username_and_password(String username, String password) {
 
-        loginPage.loginInput.sendKeys(username);
-        loginPage.passwordInput.sendKeys(password);
-        loginPage.loginButton.click();
+        loginPage.loginToXFleet(username,password);
         //wait.until(ExpectedConditions.invisibilityOf(basePage.progressBar));
         BrowserUtils.waitFor(5);
     }
@@ -135,8 +137,10 @@ public class Delete_A_Car_Steps {
     @When("hover over three dot menu on any row while logged in as driver")
     public void hover_over_three_dot_menu_on_any_row_while_logged_in_as_driver() {
 
-        BrowserUtils.waitForPageToLoad(10);
-        BrowserUtils.waitFor(5);
+        vehiclesPage.waitFOrLoadingBarToDisappear();
+
+        //BrowserUtils.waitForPageToLoad(10);
+        //BrowserUtils.waitFor(5);
 
         JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         //I used table's css locator with js executor to scroll right to the end.
@@ -151,7 +155,8 @@ public class Delete_A_Car_Steps {
 
     @When("clicks on any row")
     public void clicks_on_any_row() {
-        BrowserUtils.waitFor(3);
+        //BrowserUtils.waitFor(3);
+        vehiclesPage.waitFOrLoadingBarToDisappear();
 
         licencePlateOnTable = vehiclesPage.anyRowLicencePlate.getText();
         System.out.println(licencePlateOnTable);
@@ -159,7 +164,8 @@ public class Delete_A_Car_Steps {
         //wait.until(ExpectedConditions.elementToBeClickable(vehiclesPage.anyRow));
 
         vehiclesPage.anyRow.click();
-        BrowserUtils.waitFor(3);
+        //BrowserUtils.waitFor(3);
+        vehiclesPage.waitFOrLoadingBarToDisappear();
 
         String licencePlateOnGeneralInfo = generalInfoPage.generalInfoLicencePlate.getText();
         System.out.println(licencePlateOnGeneralInfo);
@@ -180,9 +186,11 @@ public class Delete_A_Car_Steps {
     public void s_he_clicks_on_delete() {
 
         generalInfoPage.deleteButtonOfGeneralInfo.click();
-        BrowserUtils.waitFor(3);
+        vehiclesPage.waitFOrLoadingBarToDisappear();
+        //BrowserUtils.waitFor(3);
         generalInfoPage.deleteConfirmYesButton.click();
-        BrowserUtils.waitFor(3);
+
+        //BrowserUtils.waitFor(3);
 
 
 
@@ -231,4 +239,38 @@ public class Delete_A_Car_Steps {
 
     }
 
+    @And("he sees the number of record on top of the table")
+    public void heSeesTheNumberOfRecordOnTopOfTheTable() {
+
+        numberOfRecords = vehiclesPage.getNumber(vehiclesPage.numberOfRecords);
+        numberOfPages = vehiclesPage.getNumber(vehiclesPage.numberOfPages);
+
+    }
+
+    @Then("the number must match with the row number")
+    public void theNumberMustMatchWithTheRowNumber() {
+
+//        List<WebElement> wholeList = new ArrayList<>();
+//
+//
+//        int i = 1;
+//        while(i<=numberOfPages){
+//            List<WebElement> vehicleRows = new ArrayList<>();
+//            vehicleRows = vehiclesPage.rows;
+//            wholeList.addAll(vehicleRows);
+//            BrowserUtils.waitFor(2);
+//            vehiclesPage.nextPage.click();
+//            BrowserUtils.waitFor(2);
+//            i++;
+//        }
+//
+//
+//        System.out.println(wholeList.size());
+//        Assert.assertEquals(numberOfRecords,wholeList.size());
+
+        int actualRowNumber = (vehiclesPage.getWholeRowNumber());
+        Assert.assertEquals(numberOfRecords,actualRowNumber);
+
+
+    }
 }

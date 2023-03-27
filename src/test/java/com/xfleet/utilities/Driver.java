@@ -6,6 +6,7 @@ import org.openqa.selenium.firefox.*;
 
 import java.util.concurrent.*;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class Driver {
 
