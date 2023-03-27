@@ -1,10 +1,12 @@
 package com.xfleet.pages;
 
+import com.xfleet.utilities.BrowserUtils;
 import com.xfleet.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VehiclesPage {
@@ -14,7 +16,7 @@ public class VehiclesPage {
     }
 
     @FindBy(xpath = "//div[@class='loader-mask shown']/div")
-    public WebElement loaderMask;
+    public List<WebElement> loaderMask;
 
     @FindBy(css = "tbody>tr:nth-child(5)")
     public WebElement anyRow;
@@ -77,6 +79,9 @@ public class VehiclesPage {
     @FindBy(xpath = "(//label[@class='dib'])[2]")
     public WebElement numberOfPages;
 
+    @FindBy(xpath = "(//label[@class='dib'])[3]")
+    public WebElement numberOfRecords;
+
     @FindBy(xpath = "//i[@class=\"fa-chevron-right hide-text\"]")
     public WebElement nextPage;
 
@@ -86,6 +91,69 @@ public class VehiclesPage {
     @FindBy (xpath = "//td[.='Miss Clemmie Kulas']")
     public WebElement carWithEvent;
 
+
+    @FindBy(xpath = "//tbody/tr")
+    public List<WebElement> rows;
+
+    /**
+     * This method gettext of a webElement and converts the number in text to int.
+     * @param text
+     * @return
+     */
+    public int getNumber(WebElement text){
+
+        String numberOfRecords = text.getText();
+        String onlyRecord="";
+
+        for (int i = 0; i <numberOfRecords.length() ; i++) {
+
+            if(Character.isDigit(numberOfRecords.charAt(i))){
+                onlyRecord+=numberOfRecords.charAt(i);
+
+            }
+        }
+        return Integer.parseInt(onlyRecord);
+    }
+
+    /**
+     * This method will check 10 times, 1 second intervals till the loader disappears
+     * If not it will give an exception. You can change time and intervals.
+     * PS:You must assign loader to a List<WebElement>
+     */
+    public void waitForLoadingBarToDisappear(){
+
+
+        int count = 0;
+        while(loaderMask.size()!=0 && count <10) {
+            try{ Thread.sleep(500);
+            count++;
+        }catch(Exception e){
+
+
+            }
+        }
+
+    }
+
+    public int getWholeRowNumber(){
+        List<WebElement> wholeList = new ArrayList<>();
+
+
+        int i = 1;
+        while(i<= getNumber(numberOfPages) ){
+            List<WebElement> vehicleRows = new ArrayList<>();
+            vehicleRows = rows;
+            wholeList.addAll(vehicleRows);
+            BrowserUtils.waitFor(2);
+            nextPage.click();
+            BrowserUtils.waitFor(2);
+            i++;
+        }
+        return wholeList.size();
+
+
+
+    }
 
 
 
