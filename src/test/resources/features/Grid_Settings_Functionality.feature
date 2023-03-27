@@ -5,13 +5,13 @@ Feature: As a user, I should be able to arrange vehicle table columns via "grid 
   Background: User, open the login page
     Given user, open the login page and user can be login
 
- @Step1
+  @Step1
   Scenario: "Grid Settings" should be visible when user clicks on the gear icon
-   Given move mouse icon to fleet menu and click vehicle button
-   And user click the gear button
-   And user, can see grid setting
+    Given move mouse icon to fleet menu and click vehicle button
+    And user click the gear button
+    And user, can see grid setting
 
-   @Step2
+  @Step2
   Scenario Outline: Column names in grid settings should be shown as below
     Given move mouse icon to fleet menu and click vehicle button
     And user click the gear button
@@ -58,7 +58,7 @@ Feature: As a user, I should be able to arrange vehicle table columns via "grid 
       | Catalog Value (VAT Incl.) |
 
 
-    @Step4
+  @Step4
   Scenario Outline:User can select any column by clicking the column name
     Given move mouse icon to fleet menu and click vehicle button
     And user click the gear button
@@ -101,15 +101,16 @@ Feature: As a user, I should be able to arrange vehicle table columns via "grid 
       | Model Year    |
 
 
+    @Step6
   Scenario Outline: User can see all corresponding changes under 'Fleet-Vehicles' pages
     Given move mouse icon to fleet menu and click vehicle button
     And user click the gear button
     And user drag and drop "<menuItem>"
-    And user can see changes
+    And user can click at "<menuItem>" and checked vehicle table
 
     Examples: user drag drop
-      | menuItem      |
-      | Doors Number  |
-      | Tags          |
-      | Fuel Type     |
-      | CO2 Emissions |
+      | menuItem     |
+      | Doors Number |
+      | Tags         |
+      | Fuel Type    |
+      | Horsepower   |

@@ -23,21 +23,19 @@ public class Vehicle_Table_View_Page {
     @FindBy(xpath = "//i[@class='fa-chevron-left hide-text']")
     public WebElement leftClickButton;
 
-    @FindBy(xpath = "//label[contains(@class,'dib')][3]")
+    @FindBy(xpath = "//label[.='Total of 108 records']")
     public WebElement totalRecords;
 
-   // @FindBy(xpath = "(//div[@class='btn-group'])[1]")...(//div[@class='btn-group'])[1]/div/a
-   // public WebElement exportGridButton;
-
-   // @FindBy(xpath = "(//a[contains(@class,'btn')])[1]")
-    @FindBy(xpath ="(//a[contains(@class,'btn')]/i)[1]")
-            public WebElement exportGridButton;
+    @FindBy(xpath = "//div[@class='btn-group']")
+    public WebElement exportGridButton;
 
     @FindBy(xpath = "//a[@title='CSV']")
     public WebElement CSVGridButton;
 
-    @FindBy(xpath = "//div[@class='message']")
-    public WebElement poupMessage;
+    @FindBy(xpath ="(//td[2])[1]")
+    public WebElement firstData;
+
+
 
 
 
