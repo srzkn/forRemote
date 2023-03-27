@@ -8,7 +8,7 @@ public class US_011_Driver_Filter {
 
     @Given("user should be on the cars page")
     public void user_should_be_on_the_cars_page() {
-        
+        System.out.println("deneme github");
     }
 
     @Given("click manage filters")
