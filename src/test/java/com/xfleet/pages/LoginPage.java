@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class LoginPage {
 
     public LoginPage(){
@@ -49,5 +51,32 @@ public class LoginPage {
         passwordInput.sendKeys(ConfigurationReader.getProperty("password"));
         loginButton.click();
     }
+
+    @FindBy(css = ".progress.progress-striped.active")
+    public List<WebElement> progressBar;
+
+    public void loginToXFleet(String username, String password){
+        loginInput.sendKeys(username);
+        passwordInput.sendKeys(password);
+        loginButton.click();
+
+
+    }
+
+    public void waitForProgressBarToDisappear(){
+
+
+        int count = 0;
+        while(progressBar.size()!=0 && count <10) {
+            try{ Thread.sleep(500);
+                count++;
+            }catch(Exception e){
+
+
+            }
+        }
+
+    }
+
 
 }
