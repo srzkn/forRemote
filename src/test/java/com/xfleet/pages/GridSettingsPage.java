@@ -5,17 +5,34 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class GridSettingsPage {
     public GridSettingsPage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
+
+    @FindBy(xpath = "//span[@class='grid-header-cell__label']")
+    public List<WebElement> vehicleTable;
+    @FindBy(xpath = "//tbody[@class='ui-sortable']//input")
+    public List<WebElement> tableCheckBox;
+    @FindBy(xpath = "//td[@class='title-cell']//label//span")
+    public WebElement searchResultTable;
+
+    @FindBy(xpath = "//input[@data-role='column-manager-search']")
+    public WebElement searchInput;
+
+
+    @FindBy(xpath = "//tbody[@class='ui-sortable']//span")
+    public List<WebElement> moveItemPoints;
+    @FindBy(xpath = "//tbody[@class='ui-sortable']//label")
+    public List<WebElement> gridTable;
 
     @FindBy(xpath = "//div[contains(text(),'Grid Settings')]")
     public WebElement gridPopup;
     @FindBy(xpath = "//a[@title='Grid Settings']")
     public WebElement nemuGearButton;
 
-    //*[@id="grid-custom-entity-grid-443981402"]/div[2]/div[1]/div/div[3]/div[1]/div/div/a/i
     @FindBy(xpath = "//*[@id='main-menu']/ul/li[2]/div/div/ul/li[3]")
     public WebElement menuVahicles;
     @FindBy(xpath = "//ul[@class='nav-multilevel main-menu']/li[2]")

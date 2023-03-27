@@ -13,6 +13,9 @@ public class AddEventPage {
     @FindBy(xpath = "//span[@class='ui-dialog-title']")
     public WebElement addEventText;
 
+    @FindBy(xpath ="//i[.='Add Event']")
+    public WebElement addEventButton;
+
     @FindBy(name = "oro_calendar_event_form[title]")
     public WebElement titleInputBox;
 
@@ -30,4 +33,31 @@ public class AddEventPage {
 
     @FindBy(xpath = "//button[@type='reset']")
     public WebElement cancelButton;
+
+    @FindBy(xpath = "//span[@title='#FF887C']")
+    public WebElement selectColor;
+
+    @FindBy(xpath = "(//input[@placeholder='time'])[1]")
+    public WebElement timeBox;
+
+    @FindBy(xpath = "(//input[@type='checkbox'])[2]")
+    public WebElement allDayCheckBox;
+
+    @FindBy(xpath = "(//input[@type='checkbox'])[3]")
+    public WebElement repeatCheckBox;
+
+    @FindBy(xpath ="//select[@id='recurrence-repeats-view121']")
+    public WebElement repeatOptions;
+
+    @FindBy(xpath ="(//input[@type='radio'])[3]")
+    public WebElement endNever;
+
+    @FindBy(xpath ="(//input[@type='radio'])[4]")
+    public WebElement endAfter;
+
+    @FindBy(xpath ="(//input[@type='radio'])[5]")
+    public WebElement endBy;
+
+
+
 }
