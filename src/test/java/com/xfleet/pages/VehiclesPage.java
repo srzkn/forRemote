@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class VehiclesPage {
 
     public VehiclesPage(){
@@ -28,6 +30,28 @@ public class VehiclesPage {
 
     @FindBy(xpath = "//td[.='Berry Senger']")
     public WebElement thirdRow;
+
+    @FindBy(xpath = "(//button[@data-toggle='dropdown'])[1]")
+    public WebElement viewPerPageButton;
+
+
+    @FindBy(xpath = "(//ul[@class='dropdown-menu pull-right'])[2]")
+    public List<WebElement> allOptions;
+
+    @FindBy(xpath = "(//ul[@class='dropdown-menu pull-right'])[2]/li[1]")
+    public WebElement option10;
+
+    @FindBy(xpath = "(//ul[@class='dropdown-menu pull-right'])[2]/li[2]")
+    public WebElement option25;
+
+    @FindBy(xpath = "(//ul[@class='dropdown-menu pull-right'])[2]/li[3]")
+    public WebElement option50;
+
+    @FindBy(xpath = "(//ul[@class='dropdown-menu pull-right'])[2]/li[4]")
+    public WebElement option100;
+
+
+
 
 
 
