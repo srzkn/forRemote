@@ -23,13 +23,13 @@ public class Vehicle_Table_View_Page {
     @FindBy(xpath = "//i[@class='fa-chevron-left hide-text']")
     public WebElement leftClickButton;
 
-    @FindBy(xpath = "//label[.='Total of 108 records']")
+    @FindBy(xpath = "//label[contains(text(),'Total')]")
     public WebElement totalRecords;
 
     @FindBy(xpath = "(//a[contains(@class,'btn')]/i)[1]")//(//a[contains(@class,'btn')]/i)[1]
     public WebElement exportGridButton;
 
-    @FindBy(xpath = "//label[contains(text(),'Total')]")
+    @FindBy(css = "a[title='CSV']")
     public WebElement CSVGridButton;
 
     @FindBy(xpath ="(//td[2])[1]")

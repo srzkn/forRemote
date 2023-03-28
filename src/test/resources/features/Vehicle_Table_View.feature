@@ -62,4 +62,5 @@ Feature: US003 - Vehicle Table View
     Examples:
       | userName        | passWord    |
       | user1           | UserUser123 |
+      | storemanager51  | UserUser123 |
       | salesmanager101 | UserUser123 |
