@@ -26,10 +26,10 @@ public class Vehicle_Table_View_Page {
     @FindBy(xpath = "//label[.='Total of 108 records']")
     public WebElement totalRecords;
 
-    @FindBy(xpath = "//div[@class='btn-group']")
+    @FindBy(xpath = "(//a[contains(@class,'btn')]/i)[1]")//(//a[contains(@class,'btn')]/i)[1]
     public WebElement exportGridButton;
 
-    @FindBy(xpath = "//a[@title='CSV']")
+    @FindBy(xpath = "//label[contains(text(),'Total')]")
     public WebElement CSVGridButton;
 
     @FindBy(xpath ="(//td[2])[1]")
@@ -37,6 +37,8 @@ public class Vehicle_Table_View_Page {
 
 
 
+    @FindBy(xpath ="//div[.='Export started successfully. You will receive email notification upon completion.']")
+      public WebElement popUpMessage;
 
 
 

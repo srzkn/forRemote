@@ -101,7 +101,7 @@ public class Vehicle_Table_View_StepDefinitions {
         //BrowserUtils.waitForVisibility(vehicle_table_view_page.poupMessage,10);
         BrowserUtils.sleep(5);
         Assert.assertEquals("Export started successfully. You will receive email notification upon completion.",
-                vehicle_table_view_page.poupMessage.getText());
+                vehicle_table_view_page.popUpMessage.getText());
     }
 
 
