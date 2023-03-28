@@ -7,21 +7,21 @@ import com.xfleet.pages.VehiclesPage;
 import com.xfleet.utilities.BrowserUtils;
 import com.xfleet.utilities.ConfigurationReader;
 import com.xfleet.utilities.Driver;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
+
 
 public class Delete_A_Car_Steps {
 
@@ -31,7 +31,8 @@ public class Delete_A_Car_Steps {
     VehiclesGeneralInfoPage generalInfoPage = new VehiclesGeneralInfoPage();
     Actions actions = new Actions(Driver.getDriver());
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
-    String licencePlateOnTable; int pageNum;
+    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+    String licencePlateOnTable; int numberOfPages; int numberOfRecords;
 
 
 
@@ -42,11 +43,10 @@ public class Delete_A_Car_Steps {
         Driver.getDriver().get(ConfigurationReader.getProperty("env"));
     }
     @When("user logins with his her {string} and {string}")
-    public void user_login_with_his_her_and(String userName, String Password) {
-        loginPage.loginInput.sendKeys(userName);
-        loginPage.passwordInput.sendKeys(Password);
-        loginPage.loginButton.click();
-        BrowserUtils.waitFor(3);
+    public void user_login_with_his_her_and(String userName, String password) {
+
+        loginPage.loginToXFleet(userName,password);
+        loginPage.waitForProgressBarToDisappear();
 
     }
     @When("choose Vehicles from Fleet menu")
@@ -55,33 +55,18 @@ public class Delete_A_Car_Steps {
 
         Actions actions = new Actions(Driver.getDriver());
 
-
-
-        actions.moveToElement(basePage.fleetMenu).pause(200).
-               moveToElement(basePage.vehiclesFromFleet).perform();
-
-//not :(recep) yukarıya "click()" ekleyip burayı devre dışı bıraktım..
-       JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-
-       js.executeScript("arguments[0].click();",basePage.vehiclesFromFleet);
-
+        actions.moveToElement(basePage.fleetMenu).pause(2)
+                .moveToElement(basePage.vehiclesFromFleet).click().perform();
 
     }
     @When("hover over three dot menu on any row")
     public void hover_over_three_dot_menu_on_any_row() {
+        vehiclesPage.waitForLoadingBarToDisappear();
 
-
-        BrowserUtils.waitForPageToLoad(10);
-        BrowserUtils.waitFor(5);
-
-        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         //I used table's css locator with js executor to scroll right to the end.
-        js.executeScript("document.querySelector(\"div[class='grid-scrollable-container scrollbar-is-visible']\").scrollLeft=3000");
-
-
+        js.executeScript("document.querySelector(\".grid-scrollable-container\").scrollLeft=3000");
 
         actions.moveToElement(vehiclesPage.threeDotMenu).perform();
-
         actions.moveToElement(vehiclesPage.deleteButtonOfThreeDotMenu).perform();
 
     }
@@ -90,7 +75,6 @@ public class Delete_A_Car_Steps {
     public void s_he_must_see_the_delete_button() {
 
         actions.moveToElement(vehiclesPage.deleteButtonOfThreeDotMenu).perform();
-
         Assert.assertTrue(vehiclesPage.deleteButtonOfThreeDotMenu.isDisplayed());
         Assert.assertTrue(vehiclesPage.deleteButtonOfThreeDotMenu.isEnabled());
     }
@@ -103,13 +87,12 @@ public class Delete_A_Car_Steps {
     @Then("she he must see delete confirmation message")
     public void she_he_must_see_delete_confirmation_message() {
 
-       Assert.assertTrue(vehiclesPage.deleteConfirmation.isDisplayed());
+        Assert.assertTrue(vehiclesPage.deleteConfirmation.isDisplayed());
     }
 
     @When("clicks yes,delete from delete confirmation")
     public void clicks_yes_delete_from_delete_confirmation() {
         vehiclesPage.deleteButtonOfDeleteConfirmation.click();
-
 
     }
 
@@ -117,31 +100,24 @@ public class Delete_A_Car_Steps {
     @Then("she he must see {string}")
     public void she_he_must_see(String message) {
         wait.until(ExpectedConditions.visibilityOf(vehiclesPage.youDontHavePermissionMessage));
-       Assert.assertEquals(message,vehiclesPage.youDontHavePermissionMessage.getText());
-
+        Assert.assertEquals(message,vehiclesPage.youDontHavePermissionMessage.getText());
 
     }
 
     @When("User login with his her username {string} and  password {string}")
     public void user_login_with_his_her_username_and_password(String username, String password) {
 
-        loginPage.loginInput.sendKeys(username);
-        loginPage.passwordInput.sendKeys(password);
-        loginPage.loginButton.click();
-        //wait.until(ExpectedConditions.invisibilityOf(basePage.progressBar));
-        BrowserUtils.waitFor(5);
+        loginPage.loginToXFleet(username,password);
+        loginPage.waitForProgressBarToDisappear();
     }
 
     @When("hover over three dot menu on any row while logged in as driver")
     public void hover_over_three_dot_menu_on_any_row_while_logged_in_as_driver() {
 
-        BrowserUtils.waitForPageToLoad(10);
-        BrowserUtils.waitFor(5);
+        vehiclesPage.waitForLoadingBarToDisappear();
 
-        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         //I used table's css locator with js executor to scroll right to the end.
         js.executeScript("document.querySelector(\".grid-scrollable-container\").scrollLeft=3000");
-
 
 
         actions.moveToElement(vehiclesPage.threeDotMenu).perform();
@@ -151,24 +127,18 @@ public class Delete_A_Car_Steps {
 
     @When("clicks on any row")
     public void clicks_on_any_row() {
-        BrowserUtils.waitFor(3);
+
+        vehiclesPage.waitForLoadingBarToDisappear();
 
         licencePlateOnTable = vehiclesPage.anyRowLicencePlate.getText();
         System.out.println(licencePlateOnTable);
 
-        //wait.until(ExpectedConditions.elementToBeClickable(vehiclesPage.anyRow));
-
         vehiclesPage.anyRow.click();
-        BrowserUtils.waitFor(3);
+
+        vehiclesPage.waitForLoadingBarToDisappear();
 
         String licencePlateOnGeneralInfo = generalInfoPage.generalInfoLicencePlate.getText();
         System.out.println(licencePlateOnGeneralInfo);
-
-
-        //JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-        //js.executeScript("arguments[0].click();",vehiclesPage.anyRow);
-
-
     }
     @Then("she or he must land on {string} page")
     public void s_he_must_land_on_page(String generalInfo) {
@@ -180,11 +150,8 @@ public class Delete_A_Car_Steps {
     public void s_he_clicks_on_delete() {
 
         generalInfoPage.deleteButtonOfGeneralInfo.click();
-        BrowserUtils.waitFor(3);
+        vehiclesPage.waitForLoadingBarToDisappear();
         generalInfoPage.deleteConfirmYesButton.click();
-        BrowserUtils.waitFor(3);
-
-
 
     }
     @Then("the row must be deleted and {string} message must be displayed")
@@ -231,4 +198,19 @@ public class Delete_A_Car_Steps {
 
     }
 
+    @And("he sees the number of record on top of the table")
+    public void heSeesTheNumberOfRecordOnTopOfTheTable() {
+
+        numberOfRecords = vehiclesPage.getNumber(vehiclesPage.numberOfRecords);
+        numberOfPages = vehiclesPage.getNumber(vehiclesPage.numberOfPages);
+
+    }
+
+    @Then("the number must match with the row number")
+    public void theNumberMustMatchWithTheRowNumber() {
+
+        int actualRowNumber = (vehiclesPage.getWholeRowNumber());
+        Assert.assertEquals(numberOfRecords,actualRowNumber);
+
+    }
 }
