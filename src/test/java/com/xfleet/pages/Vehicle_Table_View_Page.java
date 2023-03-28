@@ -37,7 +37,7 @@ public class Vehicle_Table_View_Page {
 
 
 
-    @FindBy(xpath ="//div[.='Export started successfully. You will receive email notification upon completion.']")
+    @FindBy(css ="div.message")
       public WebElement popUpMessage;
 
 
