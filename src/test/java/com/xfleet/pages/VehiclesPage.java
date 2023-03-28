@@ -70,6 +70,13 @@ public class VehiclesPage {
     @FindBy(xpath = "(//ul[@class='dropdown-menu pull-right'])[2]/li[4]")
     public WebElement option100;
 
+    @FindBy(xpath = "//span[.='License Plate']")
+    public WebElement licensePlateButton;
+
+
+    @FindBy(xpath = "//tbody/tr/td[1]")
+    public WebElement firstRowOfLicencePlate;
+
 
 
 
