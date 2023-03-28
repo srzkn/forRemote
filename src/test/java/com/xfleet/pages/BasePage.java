@@ -3,6 +3,7 @@ package com.xfleet.pages;
 import com.xfleet.utilities.BrowserUtils;
 import com.xfleet.utilities.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
@@ -16,8 +17,11 @@ public class BasePage {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-    @FindBy(xpath = "//span[contains(text(),'Fleet')]")
+    @FindBy(xpath = "(//span[normalize-space()=('Fleet')])[1]")
     public WebElement fleetMenu;
+
+    @FindBy(xpath = "(//span[@class='title title-level-1'])[2]")
+    public WebElement fleet;
 
     @FindBy(xpath = "//span[.='Vehicles']")
     public WebElement vehiclesFromFleet;
@@ -27,6 +31,9 @@ public class BasePage {
 
     @FindBy(css = "div[class='loader-mask shown']")
     public WebElement loaderMask;
+
+    @FindBy(xpath = "//div[@class='progress progress-striped active']")
+    public WebElement progressBar;
 
 
     public void waitUntilLoaderScreenDisappear() {

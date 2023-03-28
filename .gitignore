@@ -2,3 +2,4 @@
 /.idea/
 /*.iml
 /out/
+/src/test/java/com/xfleet/pages/BasePagecemal.java

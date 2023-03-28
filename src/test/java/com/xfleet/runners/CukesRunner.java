@@ -8,17 +8,17 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
 
         plugin = {
-                "pretty",
+                //"pretty",
                 "html:target/cucumber-report.html",
                 "json:target/cucumber-report.json",
-                "junit:target/cucumber-report.xml",
-                "rerun:target/rerun.txt"
+                //"junit:target/cucumber-report.xml",
+                //"rerun:target/rerun.txt"
 
         },
         features = "src/test/resources/features",
         glue = "com/xfleet/step_definitions",
         dryRun = false,
-        tags = "",
+        tags = "@XFLEET10-855",
         publish = true
 )
 public class CukesRunner {

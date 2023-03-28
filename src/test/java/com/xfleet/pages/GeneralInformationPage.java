@@ -19,4 +19,6 @@ public class GeneralInformationPage {
 
     @FindBy(xpath = "//div[@class='message']")
     public WebElement eventSuccessfullyCreatedText;
+
+
 }
