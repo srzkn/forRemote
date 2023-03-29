@@ -1,113 +1,122 @@
-#User Story :
-#
-#As a user, I should be able to use the "Driver" filter under the Fleet-Vehicles page
-#
-#
-#
-#Acceptance Criteria:
-#
-#1- User can select "Driver" filter under 'Fleet-Vehicles' module
-#
-#2- "Driver" filter should provide the methods shown as below:
-#                -> Contains
-#                -> Does Not Contain
-#                -> Is Equal To
-#                -> Starts With
-#                -> Ends With
-#                -> Is Any Of
-#                -> Is Not Any Of434
-#                -> Is Empty
-#                -> Is Not Empty
-#
-#3- When user selects "Contains" method with a keyword, the results should contain the specified keyword
-#
-#4- When user selects "Does Not Contain" method with a keyword, the results should not contain the specified keyword
-#
-#5- When user selects "Starts-with" method with a keyword, the results should start with the specified keyword
-#
-#6- When user selects "Ends With" method with a keyword, the results should end with the specified keyword
-#
-#7- When user selects "Is Equal to" method with a keyword, the results should match the specified keyword exactly
-#
-#8- Methods  ("Contains", "Does Not Contains", "Starts With", "Ends With", "Is Equal to") shouldn't accept non-alphabetical characters
-  Feature: As a user, I should be able to use the "Driver" filter under the Fleet-Vehicles page
-
-    Background:
-      Given user should be on the cars page
-      And   click manage filters
-      And   Select Driver checkboxes
-      And   Select Driver:All
+@XFLEET10-822
+Feature: As a user, I should be able to use the "Driver" filter under the Fleet-Vehicles page
 
 
-    Scenario: 1- User can select "Driver" filter under 'Fleet-Vehicles' module
-        And   click manage filters
-        And   Verify Driver checkbox is selected
+  Background: deneme
 
-    Scenario Outline:2- "Driver" filter should provide the methods shown as below:
+    Given users should be on the login page
+    When users logins with his her "user1" and "UserUser123"
+    And user click fleet module
+    And user move to vehicles
+    And go to filterSign
+    And   click manage filters
+    And   Select Driver checkboxes
+    Then  Select Driver:All
 
-       # When user click filter dropdown under Driver:All
-        And  select "<specified filter>"
+  @XFLEET10-814
+  Scenario: 1- User can select "Driver" filter under 'Fleet-Vehicles' module
 
-        Examples:
-          |specified filter|
-          |Contains|
-          |Does Not Contain|
-          |Is Equal To|
-          |Starts With|
-          |Ends With|
-          |Is Any Of|
-          |Is Not Any Of434|
-          |Is Empty|
-          |Is Not Empty|
+    When  click manage filters
+    Then   Verify Driver checkbox is selected
 
-    Scenario:3-When user selects "Contains" method with a keyword, the results should contain the specified keyword
+  @XFLEET10-815
+  Scenario:2- "Driver" filter should provide the methods such as contains, ends with,
 
-       #When user click filter dropdown under Driver:All
-       And  select "contains"
-       And  type "specified keyword"
-       And  click upload button
-       Then the result should include "specified keyword"
+    When user click filter dropdown under Driver:All
+    Then  select specified filter
 
-    Scenario:4-When user selects "Does Not Contain" method with a keyword,
-               the results should not contain the specified keyword
 
-      #When user click filter dropdown under Driver:All
-      And  select "Does Not Contain"
-      And  type "specified keyword"
-      And  click upload button
-      Then the results should not contain the "specified keyword"
+  @XFLEET10-816
+  Scenario:3-When user selects "Contains" method with a keyword, the results should contain the specified keyword
 
-    Scenario:5- When user selects "Starts-with" method with a keyword, the results should start with the specified keyword
-         # When user click filter dropdown under Driver:All
-        And  select "Starts-with"
-        And  type "specified keyword"
-        And  click upload button
-        Then the results should start with the specified keyword
+    When user click filter dropdown under Driver:All
+    Then  select contains filter
+    And  type "Ahmed"
+    And  click upload button
+    Then the result should include "Ahmed"
 
-    Scenario:6- When user selects "Ends With" method with a keyword, the results should end with the specified keyword
 
-     #When user click filter dropdown under Driver:All
-      And  select "Ends With"
-      And  type "specified keyword"
-      And  click upload button
-      Then the results should end with the specified keyword
+  @XFLEET10-817
+  Scenario:4-When user selects "Does Not Contain" method with a keyword,
+  the results should not contain the specified keyword
 
-    Scenario:7- When user selects "Is Equal to" method with a keyword, the results should match the specified keyword exactly
+    When user click filter dropdown under Driver:All
+    And  select Does Not Contain
+    And  type "Ahmed"
+    And  click upload button
+    Then the results should not contain the "Ahmed"
 
-     # When user click filter dropdown under Driver:All
-      And  select "Is Equal to"
-      And  type "specified keyword"
-      And  click upload button
-      Then the results should match the specified keyword exactly
+  @XFLEET10-818
+  Scenario:5- When user selects "Starts-with" method with a keyword, the results should start with the specified keyword
+    When user click filter dropdown under Driver:All
+    And  select "Starts-with"
+    And  type "Ah"
+    And  click upload button
+    Then the results should start with the "Ah"
 
-    Scenario Template:8- Methods  ("Contains", "Does Not Contains", "Starts With", "Ends With", "Is Equal to") shouldn't accept non-alphabetical characters
+  @XFLEET10-819
+  Scenario:6- When user selects "Ends With" method with a keyword, the results should end with the specified keyword
 
-      When user select Starts With
-      And  type "<non-alphabatical chars>"
-      And  click upload button
-      Then usual result shouldn't be appeared(No entities were found to match your search)
+    When user click filter dropdown under Driver:All
+    And  select "Ends With"
+    And  type "ty"
+    And  click upload button
+    Then the results should end with the "ty"
 
-      Examples:
-        |non-alphabatical chars|
-        |987                   |
-        |/*-                   |
+  @XFLEET10-820
+  Scenario:7- When user selects "Is Equal to" method with a keyword, the results should match the specified keyword exactly
+
+    When user click filter dropdown under Driver:All
+    And  select "Is Equal to"
+    And  type "Adelaida Daugherty"
+    And  click upload button
+    Then the results should match the "Adelaida Daugherty" exactly
+
+  @XFLEET10-821
+  Scenario Template:8- Methods  ("Contains", "Does Not Contains", "Starts With", "Ends With", "Is Equal to") shouldn't accept non-alphabetical characters
+
+    When user click filter dropdown under Driver:All
+    When user select Starts With
+    And  type "<non-alphabatical chars>"
+    And  click upload button
+    Then usual result shouldn't be appeared(No entities were found to match your search)
+
+    Examples:
+      | non-alphabatical chars |
+      | 987                    |
+      | /*-                    |
+
+
+
+      #User Story :
+      #
+      #As a user, I should be able to use the "Driver" filter under the Fleet-Vehicles page
+      #
+      #
+      #
+      #Acceptance Criteria:
+      #
+      #1- User can select "Driver" filter under 'Fleet-Vehicles' module
+      #
+      #2- "Driver" filter should provide the methods shown as below:
+      #                -> Contains
+      #                -> Does Not Contain
+      #                -> Is Equal To
+      #                -> Starts With
+      #                -> Ends With
+      #                -> Is Any Of
+      #                -> Is Not Any Of434
+      #                -> Is Empty
+      #                -> Is Not Empty
+      #
+      #3- When user selects "Contains" method with a keyword, the results should contain the specified keyword
+      #
+      #4- When user selects "Does Not Contain" method with a keyword, the results should not contain the specified keyword
+      #
+      #5- When user selects "Starts-with" method with a keyword, the results should start with the specified keyword
+      #
+      #6- When user selects "Ends With" method with a keyword, the results should end with the specified keyword
+      #
+      #7- When user selects "Is Equal to" method with a keyword, the results should match the specified keyword exactly
+      #
+      #8- Methods  ("Contains", "Does Not Contains", "Starts With", "Ends With", "Is Equal to") shouldn't accept non-alphabetical characters
