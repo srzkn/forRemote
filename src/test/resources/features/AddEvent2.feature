@@ -1,7 +1,7 @@
 @XFLEET10-841
 Feature: As a store manager and sales manager, I should be able to add an event
 
-  #@XFLEET10-835
+
   Background:
     Given user should be on the login page
 

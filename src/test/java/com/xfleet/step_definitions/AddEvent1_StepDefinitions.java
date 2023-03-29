@@ -21,6 +21,7 @@ public class AddEvent1_StepDefinitions {
     AddEventPage addEventPage = new AddEventPage();
 
 
+
     @When("user clicks vehicles option under the Fleet radio button")
     public void userClicksVehiclesOptionUnderTheFleetRadioButton() {
 
@@ -212,4 +213,7 @@ public class AddEvent1_StepDefinitions {
             addEventPage.cancelButton.click();
         }
     }
+
+
+
 }
