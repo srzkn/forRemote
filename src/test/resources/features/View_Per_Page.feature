@@ -1,11 +1,11 @@
 
 Feature: As a user, I should be able to arrange vehicle table data under Fleet-Vehicle page
   Background:
-    Given User should be on the login page
+    Given user should be on the login page
 
   Scenario Outline:User can arrange rows/vehicle numbers to be displayed by clicking on 'View Per Page' button under Fleet-Vehicles module
 
-    When User login with his her "<userName>" and "<passWord>"
+    When user logins with his her "<userName>" and "<passWord>"
     And choose Vehicles from Fleet menu
     Then user can click on View Per Page button
 
@@ -20,7 +20,7 @@ Feature: As a user, I should be able to arrange vehicle table data under Fleet-V
 
   Scenario Outline:The value of 'View Per Page' should be '25' by default
 
-    When User login with his her "<userName>" and "<passWord>"
+    When user logins with his her "<userName>" and "<passWord>"
     And choose Vehicles from Fleet menu
     Then user should see 25 by default on the View Per Page dropdown menu
 
@@ -39,7 +39,7 @@ Feature: As a user, I should be able to arrange vehicle table data under Fleet-V
   ->50
   ->100
 
-    When User login with his her "<userName>" and "<passWord>"
+    When user logins with his her "<userName>" and "<passWord>"
     And choose Vehicles from Fleet menu
     Then user should see all values on the View Per Page dropdown menu
     Then user can select each of the values
