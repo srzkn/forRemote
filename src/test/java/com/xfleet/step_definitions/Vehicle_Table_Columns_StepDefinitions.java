@@ -8,6 +8,7 @@ import com.xfleet.utilities.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,15 +23,18 @@ public class Vehicle_Table_Columns_StepDefinitions {
 
     FilterMenu_General filterMenuGeneral = new FilterMenu_General();
 
+    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+
 
 
     @Then("user can can sort a column in ascending order by clicking the column name")
     public void user_can_can_sort_a_column_in_ascending_order_by_clicking_the_column_name() throws InterruptedException {
         String expectedFirstRowTextLicencePlateAscending = "00BKVZ";
         Thread.sleep(10000);
-        vehiclesPage.licensePlateButton.click();
+        js.executeScript("arguments[0].click();", vehiclesPage.licensePlateButton);
+        //vehiclesPage.licensePlateButton.click();
         Thread.sleep(10000);
-        String actualFirstRowTextLicencePlateAscending = vehiclesPage.firstRowOfLicencePlate.getText();
+        String actualFirstRowTextLicencePlateAscending = vehiclesPage.firstRowOfLicencePlateAfterSortingAndFiltering.getText();
         System.out.println("actualFirstRowTextLicencePlateAscending = " + actualFirstRowTextLicencePlateAscending);
         Assert.assertEquals(expectedFirstRowTextLicencePlateAscending,actualFirstRowTextLicencePlateAscending);
 
@@ -39,12 +43,44 @@ public class Vehicle_Table_Columns_StepDefinitions {
     public void user_can_can_sort_a_column_in_descending_order_by_clicking_the_column_name() throws InterruptedException {
 
         String expectedFirstRowTextLicencePlateDescending = "99WKOU";
-        vehiclesPage.licensePlateButton.click();
+        js.executeScript("arguments[0].click();", vehiclesPage.licensePlateButton);
+        //vehiclesPage.licensePlateButton.click();
+        Thread.sleep(10000);
+        String actualFirstRowTextLicencePlateDescending = vehiclesPage.firstRowOfLicencePlateAfterSortingAndFiltering.getText();
+        System.out.println("actualFirstRowTextLicencePlateDescending = " + actualFirstRowTextLicencePlateDescending);
+        Assert.assertEquals(expectedFirstRowTextLicencePlateDescending,actualFirstRowTextLicencePlateDescending);
+    }
+
+    @Then("driver can can sort a column in ascending order by clicking the column name")
+    public void driverCanCanSortAColumnInAscendingOrderByClickingTheColumnName() throws InterruptedException {
+
+        String expectedFirstRowTextLicencePlateAscending = "00BKVZ";
+        Thread.sleep(10000);
+        js.executeScript("arguments[0].click();", vehiclesPage.licensePlateButton);
+        //vehiclesPage.licensePlateButton.click();
+        Thread.sleep(10000);
+        String actualFirstRowTextLicencePlateAscending = vehiclesPage.firstRowOfLicencePlate.getText();
+        System.out.println("actualFirstRowTextLicencePlateAscending = " + actualFirstRowTextLicencePlateAscending);
+        Assert.assertEquals(expectedFirstRowTextLicencePlateAscending,actualFirstRowTextLicencePlateAscending);
+
+
+    }
+
+    @Then("driver can can sort a column in descending order by clicking the column name")
+    public void driverCanCanSortAColumnInDescendingOrderByClickingTheColumnName() throws InterruptedException {
+
+        String expectedFirstRowTextLicencePlateDescending = "99WKOU";
+        js.executeScript("arguments[0].click();", vehiclesPage.licensePlateButton);
+        //vehiclesPage.licensePlateButton.click();
         Thread.sleep(10000);
         String actualFirstRowTextLicencePlateDescending = vehiclesPage.firstRowOfLicencePlate.getText();
         System.out.println("actualFirstRowTextLicencePlateDescending = " + actualFirstRowTextLicencePlateDescending);
         Assert.assertEquals(expectedFirstRowTextLicencePlateDescending,actualFirstRowTextLicencePlateDescending);
+
+
     }
+
+
 
     @And("user sort and filter a column")
     public void userSortAndFilterAColumn() throws InterruptedException {
@@ -93,4 +129,6 @@ public class Vehicle_Table_Columns_StepDefinitions {
         Assert.assertEquals(expectedFirstRowTextLicencePlateOriginal,actualFirstRowTextLicencePlateAfterSortingAndFiltering);
 
     }
+
+
 }
