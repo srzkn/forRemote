@@ -13,7 +13,7 @@ public class AddEventPage {
     @FindBy(xpath = "//span[@class='ui-dialog-title']")
     public WebElement addEventText;
 
-    @FindBy(xpath ="//i[.='Add Event']")
+    @FindBy(xpath ="(//a[@data-id='477'])[2]")
     public WebElement addEventButton;
 
     @FindBy(name = "oro_calendar_event_form[title]")
@@ -46,7 +46,7 @@ public class AddEventPage {
     @FindBy(xpath = "(//input[@type='checkbox'])[3]")
     public WebElement repeatCheckBox;
 
-    @FindBy(xpath ="//select[@id='recurrence-repeats-view121']")
+    @FindBy(xpath ="//select[@data-name='recurrence-repeats']")
     public WebElement repeatOptions;
 
     @FindBy(xpath ="(//input[@type='radio'])[3]")

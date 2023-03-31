@@ -26,11 +26,21 @@ Feature: As a store manager and sales manager, I should be able to add an event
     And user hovers over Fleet and clicks on vehicles
     And user clicks on any vehicle
     And user clicks on Add Event button
+    And Add Event page pop ups
     And user selects color
     Then the color is selected
 
-  @XFLEET10-839
+  @XFLEET10-890
   Scenario: User can click "All-day event" check box and after click time boxes will disappear
+    When user logins with valid credentials
+    And user hovers over Fleet and clicks on vehicles
+    And user clicks on any vehicle
+    And user clicks on Add Event button
+    And user selects All-day event Checkbox
+    Then time-boxes disappear
+
+  @XFLEET10-839
+  Scenario: User can repeat the action by specifying occurrence periods and ending time
     When user logins with valid credentials
     And user hovers over Fleet and clicks on vehicles
     And user clicks on any vehicle

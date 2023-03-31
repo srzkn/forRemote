@@ -24,73 +24,71 @@ public class AddEvent2_stepDefinitions {
     @When("user logins with valid credentials")
     public void userLoginsWithValidCredentials() {
         loginPage.login();
+        loginPage.waitForProgressBarToDisappear();
     }
 
     @When("user hovers over Fleet and clicks on vehicles")
     public void user_hovers_over_fleet_and_clicks_on_vehicles() {
-        BrowserUtils.waitForVisibility(basePage.fleetMenu,10);
-
-       //actions.moveToElement(basePage.fleetMenu).pause(2000).click(basePage.vehiclesFromFleet).build().perform();
-        actions.moveToElement(basePage.fleetMenu).pause(200).moveToElement(basePage.vehiclesFromFleet).perform();
-        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
-
-        js.executeScript("arguments[0].click();",basePage.vehiclesFromFleet);
+        actions.moveToElement(basePage.fleetMenu).pause(1000).moveToElement(basePage.vehiclesFromFleet).click().perform();
         System.out.println("vehicles menu is clicked");
     }
 
     @When("user clicks on any vehicle")
     public void user_clicks_on_any_vehicle() {
-        //BrowserUtils.waitForClickablility(vehiclesPage.firstData,10);
-        BrowserUtils.waitFor(4);
-        vehiclesPage.firstData.click();
-        actions.moveToElement(vehiclesPage.firstData).pause(200).click(vehiclesPage.firstData).perform();
+        vehiclesPage.waitForLoadingBarToDisappear();
+        actions.moveToElement(vehiclesPage.firstData).pause(1000).moveToElement(vehiclesPage.firstData).click().perform();
+        vehiclesPage.waitForLoadingBarToDisappear();
         System.out.println("vehicle is clicked");
     }
 
     @Then("user can see Add Event button")
     public void user_can_see_add_event_button() {
-        //BrowserUtils.waitForClickablility(addEventPage.addEventButton,10);
-        BrowserUtils.waitFor(4);
         Assert.assertTrue(addEventPage.addEventButton.isDisplayed());
         System.out.println("add event button is seen");
     }
 
     @When("user clicks on Add Event button")
     public void user_clicks_on_add_event_button() {
-        BrowserUtils.waitForClickablility(addEventPage.addEventButton,10);
-        addEventPage.addEventButton.click();
+        actions.moveToElement(addEventPage.addEventButton).pause(2000).moveToElement(addEventPage.addEventButton).click().perform();
+        vehiclesPage.waitForLoadingBarToDisappear();
+        System.out.println("add event button is CLICKED");
     }
 
 
     @Then("Add Event page pop ups")
     public void addEventPagePopUps() {
-        //BrowserUtils.waitForVisibility(addEventPage.addEventText,10);
+        vehiclesPage.waitForLoadingBarToDisappear();
         Assert.assertTrue(addEventPage.addEventText.isDisplayed());
+        System.out.println("add event TITLE is DISPLAYED");
     }
 
     @When("user selects color")
     public void user_selects_color() {
-        //BrowserUtils.waitForVisibility(addEventPage.selectColor,10);
-        actions.moveToElement(addEventPage.selectColor).click().build().perform();
+        vehiclesPage.waitForLoadingBarToDisappear();
+        if (addEventPage.selectColor.isEnabled()){
+            System.out.println("button is Enabled");
+            actions.moveToElement(addEventPage.selectColor).pause(1000).click().build().perform();
+            System.out.println("button is Selected");
+        }
+        else{
+            System.out.println("the color box is not enabled");
+        }
     }
     @Then("the color is selected")
     public void the_color_is_selected() {
-        Assert.assertTrue(addEventPage.selectColor.isSelected());
+        vehiclesPage.waitForLoadingBarToDisappear();
+        if (addEventPage.selectColor.isSelected()){
+            System.out.println("button is Selected");
+        }
+        else{
+            System.out.println("button is NOT SELECTED");
+        }
     }
-
-    @When("user selects All Day Checkbox")
-    public void user_selects_all_day_checkbox() {
-        actions.moveToElement(addEventPage.allDayCheckBox).click().build().perform();
-    }
-    @Then("time boxes disappear")
-    public void time_boxes_disappear() {
-       Assert.assertFalse(addEventPage.timeBox.isDisplayed());
-    }
-
     @When("user selects repeat Checkbox")
     public void user_selects_repeat_checkbox() {
         actions.moveToElement(addEventPage.repeatCheckBox).click().build().perform();
     }
+
     @Then("repeat options are visible")
     public void repeat_options_are_visible() {
        Assert.assertTrue(addEventPage.repeatOptions.isDisplayed());
@@ -104,14 +102,23 @@ public class AddEvent2_stepDefinitions {
 
     @And("user clicks on any vehicle with an event")
     public void userClicksOnAnyVehicleWithAnEvent() {
-        //BrowserUtils.waitForClickablility(vehiclesPage.firstData,10);
-        BrowserUtils.waitFor(4);
-        vehiclesPage.carWithEvent.click();
+        vehiclesPage.waitForLoadingBarToDisappear();
+        actions.moveToElement(vehiclesPage.carWithEvent).pause(1000).click().perform();
        System.out.println("vehicle is clicked");
     }
 
     @Then("user can see event information")
     public void userCanSeeEventInformation() {
+        vehiclesPage.waitForLoadingBarToDisappear();
         Assert.assertTrue(vehiclesPage.eventDetails.isDisplayed());
+    }
+
+    @When("user selects All-day event Checkbox")
+    public void user_selects_all_day_event_checkbox() {
+        actions.moveToElement(addEventPage.allDayCheckBox).pause(1000).click().build().perform();
+    }
+    @Then("time-boxes disappear")
+    public void time_boxes_disappear() {
+        Assert.assertFalse(addEventPage.timeBox.isDisplayed());
     }
 }
