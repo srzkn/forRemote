@@ -78,7 +78,7 @@ public class VehiclesPage {
     public WebElement licensePlateButton;
 
 
-    @FindBy(xpath = "//tbody/tr/td[1]")
+    @FindBy(xpath = "//tbody/tr[1]/td[1]")
     public WebElement firstRowOfLicencePlate;
 
     @FindBy(xpath = "(//tbody/tr/td[2])[1]")
