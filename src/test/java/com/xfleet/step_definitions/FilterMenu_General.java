@@ -1,10 +1,6 @@
 package com.xfleet.step_definitions;
 
 
-
-
-
-
 import com.xfleet.pages.BasePage;
 import com.xfleet.pages.LoginPage;
 import com.xfleet.pages.VehicleFilterMenuPage;
@@ -50,7 +46,7 @@ public class FilterMenu_General {
 
         dashboard.fleetMenu.click();
         dashboard.vehiclesFromFleet.click();
-BrowserUtils.sleep(10);
+        BrowserUtils.sleep(10);
     }
 
     @And("the user should be able to clicks the filter icon")
