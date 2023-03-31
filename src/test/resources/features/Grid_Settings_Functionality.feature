@@ -1,17 +1,17 @@
-@MuratA
+@XFLEET10-884
 Feature: As a user, I should be able to arrange vehicle table columns via "grid settings"
   functionality under the Fleet-Vehicles page
 
   Background: User, open the login page
     Given user, open the login page and user can be login
 
-  @Step1
+  @XFLEET10-878
   Scenario: "Grid Settings" should be visible when user clicks on the gear icon
     Given move mouse icon to fleet menu and click vehicle button
     And user click the gear button
     And user, can see grid setting
 
-  @Step2
+  @XFLEET10-879
   Scenario Outline: Column names in grid settings should be shown as below
     Given move mouse icon to fleet menu and click vehicle button
     And user click the gear button
@@ -40,7 +40,7 @@ Feature: As a user, I should be able to arrange vehicle table columns via "grid 
       | Horsepower Taxation       |
       | Power (KW)                |
 
-  @Step3
+  @XFLEET10-880
   Scenario Outline: User can find any column by typing the name on "Quick Search" input box
     Given move mouse icon to fleet menu and click vehicle button
     And user click the gear button
@@ -58,7 +58,7 @@ Feature: As a user, I should be able to arrange vehicle table columns via "grid 
       | Catalog Value (VAT Incl.) |
 
 
-  @Step4
+  @XFLEET10-881
   Scenario Outline:User can select any column by clicking the column name
     Given move mouse icon to fleet menu and click vehicle button
     And user click the gear button
@@ -87,7 +87,7 @@ Feature: As a user, I should be able to arrange vehicle table columns via "grid 
       | Horsepower Taxation       |
       | Power (KW)                |
 
-  @Step5
+  @XFLEET10-882
   Scenario Outline: User can arrange the order of the columns (by dragging and dropping)
     Given move mouse icon to fleet menu and click vehicle button
     And user click the gear button
@@ -101,7 +101,7 @@ Feature: As a user, I should be able to arrange vehicle table columns via "grid 
       | Model Year    |
 
 
-    @Step6
+    @XFLEET10-883
   Scenario Outline: User can see all corresponding changes under 'Fleet-Vehicles' pages
     Given move mouse icon to fleet menu and click vehicle button
     And user click the gear button

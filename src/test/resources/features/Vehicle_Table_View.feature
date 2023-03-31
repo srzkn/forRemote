@@ -12,7 +12,6 @@ Feature: US003 - Vehicle Table View
 
     Examples:
       | userName        | passWord    |
-      | user1           | UserUser123 |
       | storemanager51  | UserUser123 |
       | salesmanager101 | UserUser123 |
 
@@ -24,7 +23,6 @@ Feature: US003 - Vehicle Table View
 
     Examples:
       | userName        | passWord    |
-      | user1           | UserUser123 |
       | storemanager51  | UserUser123 |
       | salesmanager101 | UserUser123 |
 
@@ -38,7 +36,6 @@ Feature: US003 - Vehicle Table View
 
     Examples:
       | userName        | passWord    |
-      | user1           | UserUser123 |
       | storemanager51  | UserUser123 |
       | salesmanager101 | UserUser123 |
 
@@ -49,7 +46,8 @@ Feature: US003 - Vehicle Table View
 
     Examples:
       | userName | passWord    |
-      | user1    | UserUser123 |
+      | storemanager51  | UserUser123 |
+      | salesmanager101 | UserUser123 |
 
   @wip_recep
   Scenario Outline: User can download table data in XLS or CSV format from "Export Grid" (a confirmation message is enough to validate)
@@ -61,5 +59,5 @@ Feature: US003 - Vehicle Table View
 
     Examples:
       | userName        | passWord    |
-      | user1           | UserUser123 |
+      | storemanager51  | UserUser123 |
       | salesmanager101 | UserUser123 |

@@ -2,6 +2,7 @@ package com.xfleet.pages;
 
 import com.xfleet.utilities.BrowserUtils;
 import com.xfleet.utilities.Driver;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -10,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VehiclesPage {
+
+    VehicleFilterMenuPage vehicleFilter = new VehicleFilterMenuPage();
+    JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
 
     public VehiclesPage(){
         PageFactory.initElements(Driver.getDriver(),this);
@@ -70,8 +74,34 @@ public class VehiclesPage {
     @FindBy(xpath = "(//ul[@class='dropdown-menu pull-right'])[2]/li[4]")
     public WebElement option100;
 
+    @FindBy(xpath = "//span[.='License Plate']")
+    public WebElement licensePlateButton;
 
 
+    @FindBy(xpath = "//tbody/tr/td[1]")
+    public WebElement firstRowOfLicencePlate;
+
+    @FindBy(xpath = "(//tbody/tr/td[2])[1]")
+    public WebElement firstRowOfLicencePlateAfterSortingAndFiltering;
+
+    @FindBy(xpath = "//a[@title='Reset']")
+    public WebElement resetButton;
+
+    @FindBy(xpath = "//div[@class='btn filter-criteria-selector oro-drop-opener oro-dropdown-toggle filter-default-value']")
+    public WebElement locationButton;
+
+    @FindBy(xpath = "(//input[@type='text'])[2]")
+    public WebElement locationInputBox;
+
+    @FindBy(xpath = "//input[@id='ui-multiselect-0-0-option-3']")
+    public WebElement locationCheckBox;
+
+    public void activatingLocationFilter() throws InterruptedException {
+        vehicleFilter.manageFiltersBtn.click();
+        Thread.sleep(2000);
+        js.executeScript("arguments[0].click();", locationCheckBox);
+        //locationCheckBox.click();
+    }
 
     @FindBy(xpath ="//td[3]")
     public WebElement firstData;
